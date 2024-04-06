@@ -1,0 +1,38 @@
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+    "title": "Novo evento 2",
+    "details": null,
+    "maximumAttendees": 1
+}
+
+
+###
+
+POST http://localhost:3333/events/9e7be48f-2b9e-47c0-a7a0-8f26d6183d2c/attendees
+Content-Type: application/json
+
+{
+    "name": "Lucas Pereira",
+    "email": "lucasgamesdark2@gmail.com"
+}
+
+
+
+###
+
+GET http://localhost:3333/events/9e7be48f-2b9e-47c0-a7a0-8f26d6183d2c
+
+
+###
+
+GET http://localhost:3333/attendees/1/badge
+
+###
+
+GET http://localhost:3333/attendees/4/check-in
+
+###
+
+GET http://localhost:3333/events/9e7be48f-2b9e-47c0-a7a0-8f26d6183d2c/attendees?query=lucas
