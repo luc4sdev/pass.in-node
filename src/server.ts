@@ -10,8 +10,13 @@ import { getAttendeeBadge } from './routes/get-attendee-badge'
 import { checkIn } from './routes/check-in'
 import { getEventAttendees } from './routes/get-event-attendees'
 import { errorHandler } from './error-handler'
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
+
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3333;
+
 
 app.register(fastifyCors, {
     origin: '*',
@@ -47,6 +52,6 @@ app.register(getEventAttendees)
 app.setErrorHandler(errorHandler)
 
 
-app.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
+app.listen({ port, host: '0.0.0.0' }).then(() => {
     console.log('HTTP server running!')
 })

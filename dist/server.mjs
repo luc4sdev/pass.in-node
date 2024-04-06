@@ -29,7 +29,10 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
 import fastifyCors from "@fastify/cors";
 import { serializerCompiler, validatorCompiler, jsonSchemaTransform } from "fastify-type-provider-zod";
+import dotenv from "dotenv";
+dotenv.config();
 var app = fastify().withTypeProvider();
+var port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3333;
 app.register(fastifyCors, {
   origin: "*"
 });
@@ -57,6 +60,6 @@ app.register(getAttendeeBadge);
 app.register(checkIn);
 app.register(getEventAttendees);
 app.setErrorHandler(errorHandler);
-app.listen({ port: 3333, host: "0.0.0.0" }).then(() => {
+app.listen({ port, host: "0.0.0.0" }).then(() => {
   console.log("HTTP server running!");
 });
